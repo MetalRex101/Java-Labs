@@ -2,43 +2,53 @@ package ru.politech;
 
 public class Writer implements Runnable{
 
-        private Object wait;
-        //private Object notify;
-        private int count;
-        private int number;
-        private boolean last = false;
+    private Object wait;
+    private int count;
+    private int number;
+    private boolean last = false;
 
-        public Writer(Object wait, int count, int number) {
-            this.wait =  wait;
-            this.count = count;
-            this.number = number;
-        }
+    /**
+     * Конструктор класса
+     *
+     * @param wait
+     * @param count
+     * @param number
+     */
+    public Writer(Object wait, int count, int number) {
+        this.wait =  wait;
+        this.count = count;
+        this.number = number;
+    }
 
-        @Override
-        public void run() {
+    /**
+     * Метод выполнится при старте потока
+     */
+    @Override
+    public void run() {
 
-            for (int i=0; i<count; ++i) {
+        for (int i=0; i<count; ++i) {
 
-                if (wait != null && !(number == 0 && i == 0))
-                    synchronized(wait) {
-                        try {
-                            wait.wait();
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
+            // Ждем своей очереди и выводим сообщение на экран
+            if (wait != null && !(number == 0 && i == 0))
+                synchronized(wait) {
+                    try {
+                        wait.wait();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
                     }
-
-                System.out.print(" Thread" + number);
-                if (last) {
-                    System.out.println();
                 }
 
-                synchronized(this) {
-                    this.notify();
-                }
-
+            System.out.print(" Thread" + number);
+            if (last) {
+                System.out.println();
             }
+
+            synchronized(this) {
+                this.notify();
+            }
+
         }
+    }
 
     public void setWait(Object wait) {
         this.wait = wait;

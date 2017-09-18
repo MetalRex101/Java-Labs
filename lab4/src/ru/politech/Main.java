@@ -16,9 +16,11 @@ public class Main {
             );
         }
 
+        // Устанавливаем начальные значения
         threads[0].setWait(threads[tN-1]);
         threads[tN-1].setLast(true);
 
+        // Создаем потоки в цикле
         for (int i = tN; i > 0; i--) {
             new Thread(threads[i-1]).start();
         }

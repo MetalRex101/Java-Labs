@@ -8,6 +8,7 @@ import ru.politech.labs.lab1.Main;
 
 public class GUI extends JFrame {
 
+    // Создаем элементы окна
     private JButton button1 = new JButton("lab 1");
     private JButton button2 = new JButton("lab 2");
     private JButton button3 = new JButton("lab 3");
@@ -21,9 +22,17 @@ public class GUI extends JFrame {
     static public JTextArea textArea = new JTextArea(10,6);
     private JScrollPane scroll = new JScrollPane(textArea);
 
+    /**
+     * Вешаем обработчики событий
+     */
     private void addListeners()
     {
         button1.addMouseListener(new MouseListener() {
+            /**
+             * Обрабатыаем событие клика на 1 кнопку
+             *
+             * @param e
+             */
             @Override
             public void mouseClicked(MouseEvent e) {
                 textArea.setText("");
@@ -47,6 +56,11 @@ public class GUI extends JFrame {
             public void mouseExited(MouseEvent e) {}
         });
         button2.addMouseListener(new MouseListener() {
+            /**
+             * Обрабатыаем событие клика на 2 кнопку
+             *
+             * @param e
+             */
             @Override
             public void mouseClicked(MouseEvent e) {
                 textArea.setText("");
@@ -76,6 +90,11 @@ public class GUI extends JFrame {
             }
         });
         button3.addMouseListener(new MouseListener() {
+            /**
+             * Обрабатыаем событие клика на 3 кнопку
+             *
+             * @param e
+             */
             @Override
             public void mouseClicked(MouseEvent e) {
                 textArea.setText("");
@@ -110,6 +129,11 @@ public class GUI extends JFrame {
             }
         });
         button4.addMouseListener(new MouseListener() {
+            /**
+             * Обрабатыаем событие клика на 4 кнопку
+             *
+             * @param e
+             */
             @Override
             public void mouseClicked(MouseEvent e) {
                 textArea.setText("");
@@ -140,12 +164,15 @@ public class GUI extends JFrame {
             }
         });
     }
+    /**
+     * Настраиваем окно и располагаем на нем элементы
+     */
     GUI()
     {
         super.setSize(640,480);
         super.setTitle("lab 5");
         main_panel.setVisible(true);
-        super.add(main_panel);
+        super.add(main_panel); // Добавляем нашу панель
         super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         super.setLocationRelativeTo(null);
         main_panel.setLayout(new GridBagLayout());
@@ -153,8 +180,10 @@ public class GUI extends JFrame {
         scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         textArea.setEditable(false);
 
+        // Регистрируем обработчики
         addListeners();
 
+        // Добавляем кнопки
         main_panel.add(button1, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0, GridBagConstraints.NORTH,
                 GridBagConstraints.HORIZONTAL, new Insets(0, 0, 15, 0), 40, 20));
 
@@ -174,10 +203,11 @@ public class GUI extends JFrame {
         main_panel.add(input3, new GridBagConstraints(2,1, 1, 1, 0.0, 0.0, GridBagConstraints.NORTH,
                 GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 30, 20));
 
+        // Добавляем скролл
         main_panel.add(scroll, new GridBagConstraints(0,2, 4, 100, 0.0, 0.0, GridBagConstraints.NORTH,
                 GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 40, 20));
-        super.setVisible(true);
-        super.setResizable(false);
+        super.setVisible(true); // Делаем видимым окно
+        super.setResizable(false); // Запрещаем изменять размер
         main_panel.setVisible(true);
 
     }

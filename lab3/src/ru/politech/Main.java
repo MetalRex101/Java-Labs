@@ -7,7 +7,11 @@ public class Main {
         Store store = new Store();
         Producer producer = new Producer(store);
         Consumer consumer = new Consumer(store);
+
+        // Запускаем Потребителя в новом потоке
         new Thread(consumer).start();
+
+        // Запускаем поставщика в новом потоке
         new Thread(producer).start();
     }
 }

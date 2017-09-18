@@ -10,14 +10,27 @@ public class Calculator {
     private float result;
     private String resultType;
 
+    /**
+     * Конструктор класса
+     *
+     * @param firstArg
+     * @param operation
+     * @param secondArg
+     */
     public Calculator(float firstArg, String operation, float secondArg)
     {
         this.firstArg = firstArg;
         this.secondArg = secondArg;
         this.operation = operation;
-        this.performOperation();
+        this.performOperation(); // Выполняем вычисления
     }
 
+    /**
+     * В зависимости от оператора выполняет нужную операцию.
+     * Если введен некорректный оператор, выбросит исключение
+     *
+     * @throws ArithmeticException
+     */
     private void performOperation() throws ArithmeticException{
         switch (this.operation){
             case "+": this.result = this.firstArg + this.secondArg; this.resultType = "Сумма"; break;
